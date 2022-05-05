@@ -1,41 +1,25 @@
 version: 0.2
 
+run as: root
+on-failure: ABORT | CONTINUE
+
+env:
+  parameter store:
+  
+  DB_NAME: ""
+  DB_HOST: ""
+  DB_USER: ""
+  DB_PASSWORD: ""
+  
 phases:
-  install:
-    runtime-versions:
-        php: 8.1
   pre_build:
     commands:
-      - echo Running Pre-Build script...
-      - chmod +x codebuild/*
-      - ./codebuild/1-pre-build-env.sh
-      - ./codebuild/2-pre-build-wp-core.sh
-      - ./codebuild/3-pre-build-wp-config.sh
-      - ./codebuild/4-pre-build-wp-theme.sh
-      - ./codebuild/5-pre-build-wp-plugin.sh
-      - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-      - REPOSITORY_URI=$ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$REPOSITORY_NAME
-      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - IMAGE_TAG=${COMMIT_HASH:=latest}
-  build:
-    commands:
-      - cd $CODEBUILD_SRC_DIR
-      - echo Build started on `date`
-      - echo Building the Docker image... 
-      - docker-compose -f docker-compose.ecs.yml build #--no-cache
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - |
-        printf '[{"name":"php","imageUri":"%s"}]' \
-        $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-   artifacts:
-    files:
-    - '**/*'
-    name: myname-$(date +%Y-%m-%d)
+            - sed -i 's/database_name/'$DB_NAME'/' wp-config.php
+            - sed -i 's/username/'$DB_USER'/' wp-config.php
+            - sed -i 's/password/'$DB_PASSWORD'/' wp-config.php
+            - sed -i 's/localhost/'$DB_HOST'/' wp-config.php
+            
+artifacts:
+  files: 
+      - '**/*'
+
