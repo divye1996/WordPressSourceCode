@@ -35,3 +35,7 @@ phases:
       - |
         printf '[{"name":"php","imageUri":"%s"}]' \
         $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+   artifacts:
+    files:
+    - '**/*'
+    name: myname-$(date +%Y-%m-%d)
