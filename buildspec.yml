@@ -1,9 +1,9 @@
 version: 0.2
 
-run as: root
+run-as: root
 
 env:
-  parameter store:
+  parameter-store:
             DB_NAME: "DkWpRDSdatabase"
             DB_HOST: "/divye/dbEndpoint"
             DB_USER: "/divye/DbUser"
