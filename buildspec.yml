@@ -13,6 +13,7 @@ env:
 phases:
   pre_build:
     commands:
+        echo "Importing DB Credentials"
             - sed -i 's/database_name/'$DB_NAME'/' wp-config.php
             - sed -i 's/username/'$DB_USER'/' wp-config.php
             - sed -i 's/password/'$DB_PASSWORD'/' wp-config.php
@@ -20,5 +21,6 @@ phases:
             
 artifacts:
   files: 
+      echo "Creating Artifacts"
       - '**/*'
 
