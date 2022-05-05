@@ -1,7 +1,6 @@
 version: 0.2
 
 run as: root
-on-failure: ABORT | CONTINUE
 
 env:
   parameter store:
