@@ -4,10 +4,10 @@ run as: root
 
 env:
   parameter store:
-            DB_NAME: ""
-            DB_HOST: ""
-            DB_USER: ""
-            DB_PASSWORD: ""
+            DB_NAME: "DkWpRDSdatabase"
+            DB_HOST: "/divye/dbEndpoint"
+            DB_USER: "/divye/DbUser"
+            DB_PASSWORD: "/divye/DbPassword"
   
 phases:
   pre_build:
