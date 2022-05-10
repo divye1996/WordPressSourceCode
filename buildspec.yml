@@ -4,7 +4,7 @@ run-as: root
 
 env:
   parameter-store:
-            DB_NAME: "DkWpRDSdatabase"
+            DB_NAME: "/divye/dbName"
             DB_HOST: "/divye/dbEndpoint"
             DB_USER: "/divye/DbUser"
             DB_PASSWORD: "/divye/DbPassword"
