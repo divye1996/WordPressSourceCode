@@ -12,6 +12,13 @@ env:
 phases:
   pre_build:
     commands:
+            - sudo apt get update -y
+            - echo "Installing Wordpress dependencies"
+            - sudo apt install nginx -y
+            - sudo apt install php php-fpm -y
+            
+  build:
+    commands:
             - sed -i 's/database_name_here/'$DB_NAME'/' wp-config.php
             - sed -i 's/username_here/'$DB_USER'/' wp-config.php
             - sed -i 's/password_here/'$DB_PASSWORD'/' wp-config.php
