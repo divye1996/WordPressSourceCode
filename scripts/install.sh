@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 apt -y update
 apt install -y ruby
 apt install -y awscli
