@@ -27,5 +27,6 @@ phases:
             
 artifacts:
   files: 
+      - echo "Uploading Artifacts to your S3 bucket"
       - '**/*'
 
