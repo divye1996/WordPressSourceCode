@@ -1,8 +1,6 @@
 #!/bin/bash
-apt -y update
-apt install -y ruby
-apt install -y awscli
-cd /home/ubuntu
-wget https://aws-codedeploy-ap-south-1.s3.ap-south-1.amazonaws.com/latest/install
-chmod +x ./install
-./install auto
+apt update -y 
+apt install nginx -y
+systemctl enable nginx
+systemctl start nginx
+apt install php php-fpm php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip -y
