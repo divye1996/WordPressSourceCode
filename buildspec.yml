@@ -13,7 +13,7 @@ phases:
   pre_build:
     commands:
             - apt update -y
-            - echo "Installing Wordpress dependencies"
+            - echo "Installing nginx and php dependencies"
             - apt install nginx -y
             - apt install php php-fpm -y
             
